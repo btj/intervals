@@ -57,26 +57,24 @@ public class Interval {
 	public boolean contains(int x) {
 		return (this.getLowerBound() <= x && x < this.getUpperBound());
 	}
-	
+
 	/**
 	 * @pre | lowerBound <= upperBound
-	 * @post | result.getLowerBound() == lowerBound
-	 * @post | result.getUpperBound() == upperBound
+	 * @post | this.getLowerBound() == lowerBound
+	 * @post | this.getUpperBound() == upperBound
 	 */
-	public static Interval create(int lowerBound, int upperBound) {
-		Interval result = new Interval();
-		result.lowerBound = lowerBound;
-		result.upperBound = upperBound;
-		return result;
+	public Interval(int lowerBound, int upperBound) {
+		this.lowerBound = lowerBound;
+		this.upperBound = upperBound;
 	}
-	
+		
 	/**
 	 * @pre | other != null
 	 * @post | result.getLowerBound() == this.getLowerBound() + other.getLowerBound()
 	 * @post | result.getLength() == this.getLength() + other.getLength()
 	 */
 	public Interval plus(Interval other) {
-		return create(
+		return new Interval(
 				this.lowerBound + other.lowerBound,
 				this.upperBound + other.upperBound);
 	}
