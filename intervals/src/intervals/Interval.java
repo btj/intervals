@@ -31,9 +31,9 @@ package intervals;
  * Abstract state invariants:
  * 
  * @invar The lower bound is not greater than the upper bound
- *      | getLowerBound(this) <= getUpperBound(this)
+ *      | this.getLowerBound() <= this.getUpperBound()
  * @invar The length equals the difference of the upper bound and the lower bound
- *      | getLength(this) == getUpperBound(this) - getLowerBound(this)
+ *      | this.getLength() == this.getUpperBound() - this.getLowerBound()
  */
 public class Interval {
 	
@@ -45,23 +45,23 @@ public class Interval {
 	private int lowerBound;
 	private int upperBound;
 	
-	public static int getLowerBound(Interval interval) { return interval.lowerBound; }
+	public int getLowerBound() { return this.lowerBound; }
 	
-	public static int getUpperBound(Interval interval) { return interval.upperBound; }
+	public int getUpperBound() { return this.upperBound; }
 
-	public static int getLength(Interval interval) { return interval.upperBound - interval.lowerBound; }
+	public int getLength() { return this.upperBound - this.lowerBound; }
 	
 	/**
-	 * @post | result == (getLowerBound(interval) <= x && x < getUpperBound(interval))  
+	 * @post | result == (this.getLowerBound() <= x && x < this.getUpperBound())  
 	 */
-	public static boolean contains(Interval interval, int x) {
-		return (getLowerBound(interval) <= x && x < getUpperBound(interval));
+	public boolean contains(int x) {
+		return (this.getLowerBound() <= x && x < this.getUpperBound());
 	}
 	
 	/**
 	 * @pre | lowerBound <= upperBound
-	 * @post | getLowerBound(result) == lowerBound
-	 * @post | getUpperBound(result) == upperBound
+	 * @post | result.getLowerBound() == lowerBound
+	 * @post | result.getUpperBound() == upperBound
 	 */
 	public static Interval create(int lowerBound, int upperBound) {
 		Interval result = new Interval();
@@ -71,15 +71,14 @@ public class Interval {
 	}
 	
 	/**
-	 * @pre | interval != null
 	 * @pre | other != null
-	 * @post | getLowerBound(result) == getLowerBound(interval) + getLowerBound(other)
-	 * @post | getLength(result) == getLength(interval) + getLength(other)
+	 * @post | result.getLowerBound() == this.getLowerBound() + other.getLowerBound()
+	 * @post | result.getLength() == this.getLength() + other.getLength()
 	 */
-	public static Interval plus(Interval interval, Interval other) {
+	public Interval plus(Interval other) {
 		return create(
-				interval.lowerBound + other.lowerBound,
-				interval.upperBound + other.upperBound);
+				this.lowerBound + other.lowerBound,
+				this.upperBound + other.upperBound);
 	}
 	
 }

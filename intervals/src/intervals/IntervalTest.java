@@ -14,12 +14,12 @@ class IntervalTest {
 		Interval length2 = Interval.create(12, 15);
 //		int length2LowerBound = 12;
 //		int length2UpperBound = 15;
-		Interval totalLength = Interval.plus(length1, length2);
+		Interval totalLength = length1.plus(length2);
 //		int totalLengthLowerBound = length1LowerBound + length2LowerBound;
 //		int totalLengthUpperBound = length1UpperBound + length2UpperBound;
-		assertEquals(17, Interval.getLowerBound(totalLength));
-		assertEquals(5, Interval.getLength(totalLength));
-		assertEquals(22, Interval.getUpperBound(totalLength));
+		assertEquals(17, totalLength.getLowerBound());
+		assertEquals(5, totalLength.getLength());
+		assertEquals(22, totalLength.getUpperBound());
 	}
 
 }
