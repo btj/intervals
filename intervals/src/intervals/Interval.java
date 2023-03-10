@@ -31,9 +31,9 @@ package intervals;
  * Abstract state invariants:
  * 
  * @invar The lower bound is not greater than the upper bound
- *      | this.getLowerBound() <= this.getUpperBound()
+ *      | getLowerBound() <= getUpperBound()
  * @invar The length equals the difference of the upper bound and the lower bound
- *      | this.getLength() == this.getUpperBound() - this.getLowerBound()
+ *      | getLength() == getUpperBound() - getLowerBound()
  */
 public class Interval {
 	
@@ -45,23 +45,23 @@ public class Interval {
 	private int lowerBound;
 	private int upperBound;
 	
-	public int getLowerBound() { return this.lowerBound; }
+	public int getLowerBound() { return lowerBound; }
 	
-	public int getUpperBound() { return this.upperBound; }
+	public int getUpperBound() { return upperBound; }
 
-	public int getLength() { return this.upperBound - this.lowerBound; }
+	public int getLength() { return upperBound - lowerBound; }
 	
 	/**
-	 * @post | result == (this.getLowerBound() <= x && x < this.getUpperBound())  
+	 * @post | result == (getLowerBound() <= x && x < getUpperBound())  
 	 */
 	public boolean contains(int x) {
-		return (this.getLowerBound() <= x && x < this.getUpperBound());
+		return (getLowerBound() <= x && x < getUpperBound());
 	}
 
 	/**
 	 * @pre | lowerBound <= upperBound
-	 * @post | this.getLowerBound() == lowerBound
-	 * @post | this.getUpperBound() == upperBound
+	 * @post | getLowerBound() == lowerBound
+	 * @post | getUpperBound() == upperBound
 	 */
 	public Interval(int lowerBound, int upperBound) {
 		this.lowerBound = lowerBound;
@@ -70,13 +70,13 @@ public class Interval {
 		
 	/**
 	 * @pre | other != null
-	 * @post | result.getLowerBound() == this.getLowerBound() + other.getLowerBound()
-	 * @post | result.getLength() == this.getLength() + other.getLength()
+	 * @post | result.getLowerBound() == getLowerBound() + other.getLowerBound()
+	 * @post | result.getLength() == getLength() + other.getLength()
 	 */
 	public Interval plus(Interval other) {
 		return new Interval(
-				this.lowerBound + other.lowerBound,
-				this.upperBound + other.upperBound);
+				lowerBound + other.lowerBound,
+				upperBound + other.upperBound);
 	}
 	
 }
